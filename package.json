@@ -23,6 +23,7 @@
   "homepage": "https://github.com/gakimball/sass-compare#readme",
   "devDependencies": {
     "async": "^1.5.0",
+    "colors": "^1.1.2",
     "css-diff": "^0.4.0",
     "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
