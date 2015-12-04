@@ -4,7 +4,7 @@ var path = require('path');
 var spawn = require('child_process').spawn;
 var sass = require('node-sass');
 var cssDiff = require('css-diff');
-var rimraf = require('rimraf');
+var rimraf = require('rimraf').sync;
 var fs = require('fs');
 
 module.exports = function(options, cb) {
@@ -37,7 +37,9 @@ SassCompare.prototype.setup = function(cb) {
 }
 
 SassCompare.prototype.cleanup = function(cb) {
-  rimraf(path.join(process.cwd(), '.sass-compare'), cb);
+  rimraf(path.join(process.cwd(), '.sass-compare'));
+  rimraf(path.join(process.cwd(), '.sass-cache'));
+  cb();
 }
 
 SassCompare.prototype.compileRuby = function(cb) {
@@ -98,7 +100,7 @@ SassCompare.prototype.compare = function(cb) {
     else {
       console.log('No differences found.');
     }
-    
+
     cb();
   });
 }
