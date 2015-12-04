@@ -16,6 +16,9 @@ function SassCompare(options) {
   this.options = extend({}, options);
 }
 
+/**
+ * Kicks off the comparison process. This includes compiling CSS with both Ruby Sass and Libsass, comparing the files, and then cleaning them up.
+ */
 SassCompare.prototype.init = function(cb) {
   var _this = this;
 
@@ -32,16 +35,25 @@ SassCompare.prototype.init = function(cb) {
   });
 }
 
+/**
+ * Creates a temporary directory to store the CSS files to be compared.
+ */
 SassCompare.prototype.setup = function(cb) {
   fs.mkdir(path.join(process.cwd(), '.sass-compare'), cb);
 }
 
+/**
+ * Deletes the `.sass-compare` and `.sass-cache` folders from the working directory.
+ */
 SassCompare.prototype.cleanup = function(cb) {
   rimraf(path.join(process.cwd(), '.sass-compare'));
   rimraf(path.join(process.cwd(), '.sass-cache'));
   cb();
 }
 
+/**
+ * Uses Ruby Sass to compile the input Sass file to `.sass-compare/ruby.css`.
+ */
 SassCompare.prototype.compileRuby = function(cb) {
   var _this = this;
   var args = [this.options.input, './.sass-compare/ruby.css'];
@@ -65,6 +77,9 @@ SassCompare.prototype.compileRuby = function(cb) {
   });
 }
 
+/**
+ * Uses Libsass (via node-sass) to compile the input Sass file to `.sass-compare/libsass.css`.
+ */
 SassCompare.prototype.compileLibsass = function(cb) {
   var outputPath = path.join(process.cwd(), '.sass-compare', 'libsass.css');
 
@@ -82,6 +97,9 @@ SassCompare.prototype.compileLibsass = function(cb) {
   });
 }
 
+/**
+ * Compares the two CSS files saved to `.sass-compare`.
+ */
 SassCompare.prototype.compare = function(cb) {
   var filePath = path.join(process.cwd(), '.sass-compare');
   var files = [
@@ -105,6 +123,9 @@ SassCompare.prototype.compare = function(cb) {
   });
 }
 
+/**
+ * TODO: pretty-print the errors, comparison, etc.
+ */
 SassCompare.prototype.report = function(cb) {
   cb();
 }
