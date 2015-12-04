@@ -27,6 +27,7 @@ SassCompare.prototype.init = function(cb) {
     this.cleanup.bind(this),
     this.report.bind(this)
   ], function(err, results) {
+    if (err) throw err;
     cb();
   });
 }
@@ -91,7 +92,13 @@ SassCompare.prototype.compare = function(cb) {
     omit: ['comment'],
     visual: true
   }).then(function(diff) {
-    console.log(diff.different);
+    if (diff.different) {
+      console.log(diff.visual);
+    }
+    else {
+      console.log('No differences found.');
+    }
+    
     cb();
   });
 }

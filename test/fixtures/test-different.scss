@@ -1,0 +1,9 @@
+%ph {
+  color: black;
+}
+
+@for $i from 1 through 5 {
+  .thing:nth-child(#{$i}) {
+    @extend %ph;
+  }
+}
