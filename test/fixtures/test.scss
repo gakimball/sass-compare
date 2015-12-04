@@ -1,0 +1,25 @@
+.test {
+  &-one {
+    color: black;
+  }
+
+  &-two {
+    color: green;
+  }
+}
+
+@for $i from 1 through 5 {
+  .thing:nth-child(#{$i}) {
+    color: blue;
+  }
+}
+
+.a {
+  display: block;
+}
+
+.b {
+  @at-root (without: media) {
+    @extend .a;
+  }
+}

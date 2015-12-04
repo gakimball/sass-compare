@@ -1,0 +1,31 @@
+{
+  "name": "sass-compare",
+  "version": "0.0.1",
+  "description": "Compare the CSS output of the same Sass code compiled by Ruby Sass and Libsass.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gakimball/sass-compare.git"
+  },
+  "keywords": [
+    "sass",
+    "libsass",
+    "diff"
+  ],
+  "author": "Geoff Kimball <gakon5@gmail.com> (http://geoffkimball.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gakimball/sass-compare/issues"
+  },
+  "homepage": "https://github.com/gakimball/sass-compare#readme",
+  "devDependencies": {
+    "async": "^1.5.0",
+    "css-diff": "^0.4.0",
+    "mocha": "^2.3.4",
+    "node-sass": "^3.4.2",
+    "rimraf": "^2.4.4"
+  }
+}
